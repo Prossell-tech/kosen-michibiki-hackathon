@@ -10,3 +10,9 @@
 ## 便利プログラム
 
 - [シンプル災危通報ダミーパケット送信プログラム](simple-disaster-warning-simulator/README.md)
+
+## サンプルデータ
+
+2025年8月11日 九州北部を襲った記録的な大雨時のQZQSMパケットのサンプルデータを保管しています。
+
+- [QZQSMパケットサンプル](sample-packet/2025-08-11.txt)
