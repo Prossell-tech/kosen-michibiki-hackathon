@@ -9,19 +9,24 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@deck.gl/core": "^8.9.34",
+    "@deck.gl/layers": "^8.9.34",
+    "@deck.gl/react": "^8.9.34",
+    "mapbox-gl": "^3.14.0",
+    "next": "15.5.2",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "next": "15.5.2"
+    "react-map-gl": "^7.1.9"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4",
     "eslint": "^9",
     "eslint-config-next": "15.5.2",
-    "@eslint/eslintrc": "^3"
+    "tailwindcss": "^4",
+    "typescript": "^5"
   }
 }
