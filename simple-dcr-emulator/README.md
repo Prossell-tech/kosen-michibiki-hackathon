@@ -14,13 +14,19 @@ QZQSM形式のパケットをWebSocket経由で送信します。
 
 3. QZ1受信機をPCに接続
 
-4. 実行
+4. main.pyのSERIAL_PORTを接続したポートに変更
+
+    ```python
+    SERIAL_PORT = "/dev/tty.usbserial-0001"  # 例: Windows "COM3", macOS "/dev/tty.usbserial-0001"
+    ```
+
+5. 実行
 
     ```bash
     python3 main.py
     ```
 
-5. 載せる災害の種類を選択
+6. 載せる災害の種類を選択
 
     ```txt
     Select a dummy QZQSM message:
@@ -37,3 +43,17 @@ QZQSM形式のパケットをWebSocket経由で送信します。
     Enter number (1-10): 1
     Selected: (試験/訓練) 2019年11月27日18時10分 和歌山県南方沖 M9.0
     ```
+
+7. 配信されているデータのソケットに接続して受信
+
+### macOS場合
+
+```bash
+brew install websocat
+websocat ws://localhost:8765
+```
+
+### Windows場合
+
+ [websocatのリリースページ](https://github.com/vi/websocat/releases)
+からwebsocatを導入するか、wscat等の他のWebSocketクライアントを使用してください。
