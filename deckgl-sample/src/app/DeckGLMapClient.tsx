@@ -19,7 +19,7 @@ export default function DeckGLMap() {
   );
 
   // カラーパレット
-  const PREF_COLORS = [
+  const PREF_COLORS: [number, number, number][] = [
     [255, 99, 132],
     [54, 162, 235],
     [255, 206, 86],
@@ -76,7 +76,7 @@ export default function DeckGLMap() {
       pickable: true,
       stroked: true,
       filled: true,
-      getFillColor: (f: any) => {
+      getFillColor: (f: {properties?: {pref?: number}}) => {
         const idx = (f.properties?.pref ?? 0) % PREF_COLORS.length;
         return [...PREF_COLORS[idx], 180];
       },
@@ -95,7 +95,9 @@ export default function DeckGLMap() {
       <Map
         mapboxAccessToken={MAPBOX_TOKEN}
         mapStyle="mapbox://styles/mapbox/light-v11"
-        projection="mercator"
+        projection={{
+          name: "mercator",
+        }}
         style={{width: "100vw", height: "100vh"}}
       />
     </DeckGL>

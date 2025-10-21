@@ -9,9 +9,9 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@deck.gl/core": "^8.9.34",
-    "@deck.gl/layers": "^8.9.34",
-    "@deck.gl/react": "^8.9.34",
+    "@deck.gl/core": "^9.1.15",
+    "@deck.gl/layers": "^9.1.15",
+    "@deck.gl/react": "^9.1.15",
     "mapbox-gl": "^3.14.0",
     "next": "15.5.2",
     "react": "19.1.0",
