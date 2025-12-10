@@ -9,7 +9,7 @@
 
 ## 便利プログラム
 
-- [シンプル災危通報ダミーパケット送信プログラム](simple-disaster-warning-simulator/README.md)
+- [シンプル災危通報ダミーパケット送信プログラム](simple-dcr-emulator/README.md)
 
 ## サンプルデータ
 
