@@ -13,7 +13,7 @@
     "@deck.gl/layers": "^9.1.15",
     "@deck.gl/react": "^9.1.15",
     "mapbox-gl": "^3.14.0",
-    "next": "15.5.2",
+    "next": "^15.5.9",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-map-gl": "^7.1.9"
