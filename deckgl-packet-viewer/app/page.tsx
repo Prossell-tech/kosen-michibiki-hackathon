@@ -91,13 +91,21 @@ function parseIncomingMessage(
     const inten =
       parsed?.seismic_intensity_upper_limit ??
       parsed?.seismic_intensity_lower_limit ??
-      parsed?.seismic_intensity;
-    if (inten) parts.push(`最大:${inten}`);
+      parsed?.seismic_intensity ??
+      (Array.isArray(parsed?.seismic_intensities)
+        ? parsed.seismic_intensities.join("・")
+        : undefined);
+    if (inten) parts.push(`震度:${inten}`);
 
     const regions = Array.isArray(parsed?.eew_forecast_regions)
       ? parsed.eew_forecast_regions.join("・")
       : undefined;
     if (regions) parts.push(`対象:${regions}`);
+
+    const prefs = Array.isArray(parsed?.prefectures)
+      ? parsed.prefectures.join("・")
+      : undefined;
+    if (prefs) parts.push(`地域:${prefs}`);
 
     return parts.length ? parts.join(" / ") : text;
   };
@@ -128,6 +136,13 @@ function parseIncomingMessage(
 
     if (prefCode === null && Array.isArray(parsed.eew_forecast_regions)) {
       const hit = parsed.eew_forecast_regions.find(
+        (r: any) => typeof r === "string" && prefByName.has(r)
+      );
+      if (hit) prefCode = prefByName.get(hit) ?? null;
+    }
+
+    if (prefCode === null && Array.isArray(parsed.prefectures)) {
+      const hit = parsed.prefectures.find(
         (r: any) => typeof r === "string" && prefByName.has(r)
       );
       if (hit) prefCode = prefByName.get(hit) ?? null;
@@ -287,13 +302,6 @@ export default function Home() {
     ];
   }, [prefFeatures, hazardByPref]);
 
-  const popup = useMemo(() => {
-    if (!latestEvent) return null;
-    const pos = latestEvent.centroid ?? centroids.get(latestEvent.prefCode);
-    if (!pos) return null;
-    return {event: latestEvent, position: pos};
-  }, [latestEvent, centroids]);
-
   return (
     <div style={{width: "100vw", height: "100vh", margin: 0, padding: 0}}>
       <DeckGL
@@ -307,24 +315,7 @@ export default function Home() {
           mapStyle="mapbox://styles/mapbox/light-v11"
           projection={{name: "mercator"}}
           style={{width: "100%", height: "100%"}}
-        >
-          {popup && (
-            <Popup
-              longitude={popup.position[0]}
-              latitude={popup.position[1]}
-              closeButton={false}
-              offset={[0, -10]}
-              anchor="bottom"
-            >
-              <div style={{maxWidth: 260}}>
-                <div style={{fontWeight: 700, marginBottom: 4}}>災害情報</div>
-                <div style={{fontSize: 14, lineHeight: 1.4}}>
-                  {popup.event.message}
-                </div>
-              </div>
-            </Popup>
-          )}
-        </MapboxMap>
+        />
       </DeckGL>
 
       <div
